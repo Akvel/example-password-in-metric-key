@@ -56,10 +56,6 @@ class MicrometerTest {
     void getPrometheus() throws Exception {
         producerTemplate.sendBody("direct:simple", "test");
 
-        List<String> badMetrics = new ArrayList<>();
-
-        Assertions.assertAll();
-
         var iterator = prometheusMeterRegistry.getPrometheusRegistry().metricFamilySamples();
         Writer writer = new StringWriter(16);
         //same writer used Spring Boot Actuator
